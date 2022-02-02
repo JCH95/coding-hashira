@@ -1,4 +1,14 @@
-var saveBtn = document.getElementById("save");
+var buttons = [
+    document.getElementById("save1"),
+    document.getElementById("save2"),
+    document.getElementById("save3"),
+    document.getElementById("save4"),
+    document.getElementById("save5"),
+    document.getElementById("save6"),
+    document.getElementById("save7"),
+    document.getElementById("save8"),
+    document.getElementById("save9"),
+]
 
 // Current Date/Time
 var today = new Date();
@@ -42,30 +52,26 @@ function setColor(textarea, color) {
     textarea.style.backgroundColor = color;
 };
 
-// Storing text in local storage
-var textStorage = localStorage.getItem("textarea")
-    ? JSON.parse(localStorage.getItem("textarea"))
-    : [];
-    textStorage.forEach(textarea => {
-        listBuilder(textarea);
-    });
+// Grab save button from html
+var saveBtn = document.getElementById("save");
 
-// Save button functionality
-saveBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    textStorage.push(textarea.value);
-    localStorage.setItem("textarea", JSON.stringify(textStorage));
-    listBuilder(textarea.value);
-    textarea.value="";
-});
-
-var listBuilder = (text) => {
-    var notes = document.createElement("p");
-    notes.innerHTML = text
-    textarea.appendChild(notes);
+// Event listener for each respective button
+for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function() {
+        var note = document.getElementsByClassName("textarea").value;
+        localStorage.setItem("textarea", JSON.stringify(note));
+        alert("Note was saved!");
+    }, false);
 };
 
-// var getText = JSON.parse(localStorage.getItem("textarea"));
-// textStorage.forEach(textarea => {
-//     listBuilder(textarea);
-// });
+// Load the saved notes into the correct time slot
+var loadNotes = function() {
+    var savedNotes = localStorage.getItem("textarea").value;
+
+    // If no notes, set notes to empty array and leave function
+    if(!savedNotes) {
+        return false;
+    }
+};
+
+loadNotes();
