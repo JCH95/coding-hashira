@@ -5,13 +5,13 @@ var today = new Date();
 document.getElementById("currentDay").innerHTML = today;
 
 // Current hour of the day
-var textSlots = document.getElementsByClassName("textarea");
+var textarea = document.getElementsByClassName("textarea");
 // Changes time in current moment into just HOUR
 var time = parseInt(moment().format("H"));
 console.log(time);
 
 // If/Then statements for coloring time slots
-Array.from(textSlots).forEach(textarea => {
+Array.from(textarea).forEach(textarea => {
     var slotIdString = textarea.id, textareaHour;
     if (slotIdString) {
         textareaHour = parseInt(slotIdString);
@@ -46,7 +46,11 @@ function setColor(textarea, color) {
 var textStorage = localStorage.getItem("textarea")
     ? JSON.parse(localStorage.getItem("textarea"))
     : [];
+    textStorage.forEach(textarea => {
+        listBuilder(textarea);
+    });
 
+// Save button functionality
 saveBtn.addEventListener("click", (e) => {
     e.preventDefault();
     textStorage.push(textarea.value);
@@ -55,7 +59,13 @@ saveBtn.addEventListener("click", (e) => {
     textarea.value="";
 });
 
-var getText = JSON.parse(localStorage.getItem("textarea"));
-getText.forEach(textarea => {
-    listBuilder(textarea);
-});
+var listBuilder = (text) => {
+    var notes = document.createElement("p");
+    notes.innerHTML = text
+    textarea.appendChild(notes);
+};
+
+// var getText = JSON.parse(localStorage.getItem("textarea"));
+// textStorage.forEach(textarea => {
+//     listBuilder(textarea);
+// });
