@@ -5,4 +5,4 @@ This repo contains code for a daily work scheduler. On the page, one will find a
 Work Scheduler: ![image](https://user-images.githubusercontent.com/94874020/152286282-2fad9df6-b5c6-4399-ac94-ec30ab539bfc.png)
 
 # Here is the URL to the deployed app
-URL: 
+URL: https://jch95.github.io/coding-hashira/
