@@ -60,11 +60,12 @@ buttons.forEach(button => {
         var currentId = this.getAttribute("id").split("save")[1]
         var note = document.getElementById(currentId).value;
         localStorage.setItem("textarea" + currentId, JSON.stringify(note));
-        alert("note was saved!");
+        alert("Note was saved!");
 
         // Load the saved notes into the correct time slot
         var savedNote = localStorage.getItem("textarea" + currentId);
         savedNote = JSON.parse(savedNote);
         console.log(savedNote);
+        textarea = savedNote.value;
     });
 });
