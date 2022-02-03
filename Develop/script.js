@@ -1,13 +1,13 @@
 var buttons = [
-    document.getElementById("save1"),
-    document.getElementById("save2"),
-    document.getElementById("save3"),
-    document.getElementById("save4"),
-    document.getElementById("save5"),
-    document.getElementById("save6"),
-    document.getElementById("save7"),
-    document.getElementById("save8"),
     document.getElementById("save9"),
+    document.getElementById("save10"),
+    document.getElementById("save11"),
+    document.getElementById("save12"),
+    document.getElementById("save13"),
+    document.getElementById("save14"),
+    document.getElementById("save15"),
+    document.getElementById("save16"),
+    document.getElementById("save17"),
 ]
 
 // Current Date/Time
@@ -55,23 +55,25 @@ function setColor(textarea, color) {
 // Grab save button from html
 var saveBtn = document.getElementById("save");
 
-// Event listener for each respective button
-for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", function() {
-        var note = document.getElementsByClassName("textarea").value;
-        localStorage.setItem("textarea", JSON.stringify(note));
-        alert("Note was saved!");
-    }, false);
-};
+buttons.forEach(button => {
+    button.addEventListener("click", function() {
+        var currentId = this.getAttribute("id").split("save")[1]
+        var note = document.getElementById(currentId).value;
+        localStorage.setItem("textarea" + currentId, JSON.stringify(note));
+        alert("note was saved!");
+    });
+});
 
 // Load the saved notes into the correct time slot
 var loadNotes = function() {
-    var savedNotes = localStorage.getItem("textarea").value;
+    var savedNotes = localStorage.getItem(textarea.value);
 
     // If no notes, set notes to empty array and leave function
     if(!savedNotes) {
         return false;
     }
+
+    textarea.innerHTML = savedNotes;
 };
 
 loadNotes();
