@@ -61,19 +61,10 @@ buttons.forEach(button => {
         var note = document.getElementById(currentId).value;
         localStorage.setItem("textarea" + currentId, JSON.stringify(note));
         alert("note was saved!");
+
+        // Load the saved notes into the correct time slot
+        var savedNote = localStorage.getItem("textarea" + currentId);
+        savedNote = JSON.parse(savedNote);
+        console.log(savedNote);
     });
 });
-
-// Load the saved notes into the correct time slot
-var loadNotes = function() {
-    var savedNotes = localStorage.getItem(textarea.value);
-
-    // If no notes, set notes to empty array and leave function
-    if(!savedNotes) {
-        return false;
-    }
-
-    textarea.innerHTML = savedNotes;
-};
-
-loadNotes();
